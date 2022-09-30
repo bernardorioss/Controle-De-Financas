@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Grid from "../Grid";
+import Grid from "../Grid";
 import * as C from "./styles";
 
 const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
@@ -7,7 +7,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
   const [amount, setAmount] = useState("");
   const [isExpense, setExpense] = useState(false);
 
-//   const generateID = () => Math.round(Math.random() * 1000);
+  const generateID = () => Math.round(Math.random() * 1000); // gerar um id aleatorio
 
   const handleSave = () => {
     if (!desc || !amount) {
@@ -18,17 +18,17 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
       return;
     }
 
-    // const transaction = {
-    //   id: generateID(),
-    //   desc: desc,
-    //   amount: amount,
-    //   expense: isExpense,
-    // };
+    const transaction = {
+      id: generateID(),
+      desc: desc,
+      amount: amount,
+      expense: isExpense,
+    }; /// resposavael para fazer a lista com seus respectivos valores
 
-    // handleAdd(transaction);
+    handleAdd(transaction);
 
-    // setDesc("");
-    // setAmount("");
+    setDesc("");
+    setAmount("");
   };
 
   return (
@@ -65,7 +65,7 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
         </C.RadioGroup>
         <C.Button onClick={handleSave}>ADICIONAR</C.Button>
       </C.Container>
-      {/* <Grid itens={transactionsList} setItens={setTransactionsList} /> */}
+      <Grid itens={transactionsList} setItens={setTransactionsList} />
     </>
   );
 };

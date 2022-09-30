@@ -32,11 +32,19 @@ const App = () => {
         setTotal(`${Number(income) < Number(expense) ? "-" : ""}R$ ${total}`); // fazend a condicao se ficar negativo, se ele for menor vai aparecer um - ao lado no numero.
       }, [transactionsList]); // dependencia o transactionsList. quer dizer que quando terminar, ele fara novamente
 
+      const handleAdd = (transaction) => {
+        const newArrayTransactions = [...transactionsList, transaction]; // fazer uma copia no novo array (...) e vai adicionar a nova transacao
+    
+        setTransactionsList(newArrayTransactions); // com a dependencia do transactionlist esta no useEffect ele vai recalcular tood o resumo e atualizar
+    
+        localStorage.setItem("transactions", JSON.stringify(newArrayTransactions)); // atualizando o localstorage
+      };
+
     return( 
     <>
     <Header />
     <Resume income={income} expense={expense} total={total} />
-    <Form />
+    <Form handleAdd={handleAdd} transactionsList={transactionsList} setTransactionsList={setTransactionsList}/>
     <GlobalStyle />
     </>
     );
